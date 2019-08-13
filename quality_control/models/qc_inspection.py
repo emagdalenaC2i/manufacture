@@ -264,9 +264,16 @@ class QcInspectionLine(models.Model):
     inspection_id = fields.Many2one(
         comodel_name='qc.inspection', string='Inspection', ondelete='cascade')
     name = fields.Char(string="Question", readonly=True)
+    inspection_date = fields.Datetime(
+        related="inspection_id.date",
+    )
     product_id = fields.Many2one(
         comodel_name="product.product", related="inspection_id.product_id",
         store=True,  oldname='product')
+    test_id = fields.Many2one(
+        related="inspection_id.test",
+        store=True,
+    )
     test_line = fields.Many2one(
         comodel_name='qc.test.question', string='Test question',
         readonly=True)

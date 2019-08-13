@@ -218,6 +218,7 @@
                 <group>
                     <field name="name" />
                     <field name="inspection_id" />
+                    <field name="test_id"/>
                     <field name="product_id" />
                     <field name="success" />
                 </group>
@@ -231,6 +232,9 @@
                     <filter string="Inspection"
                             domain="[]"
                             context="{'group_by': 'inspection_id'}" />
+                    <filter string="Test"
+                            domain="[]"
+                            context="{'group_by': 'test_id'}" />
                     <filter string="Product"
                             domain="[]"
                             context="{'group_by': 'product_id'}" />
