@@ -25,3 +25,17 @@ class MrpProduction(models.Model):
                 'move_dest_ids': [(4, x.id) for x in request.move_dest_ids],
             })
         return move
+
+    def action_view_mrp_productions(self):
+        action = self.env.ref(
+            'mrp_production_request.mrp_production_request_action')
+        result = action.read()[0]
+        result['context'] = {}
+        mrs = self.mapped('mrp_production_request_id')
+        # choose the view_mode accordingly
+        if len(mrs) != 1:
+            result['domain'] = [('id', 'in', mrs.ids)]
+        elif len(mrs) == 1:
+            result['views'] = [(False, 'form')]
+            result['res_id'] = mrs.id
+        return result

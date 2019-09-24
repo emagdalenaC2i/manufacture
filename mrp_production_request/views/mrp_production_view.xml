@@ -6,9 +6,17 @@
     <record id="mrp_production_form_view" model="ir.ui.view">
         <field name="name">mrp.production.form - mrp_production_request</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id"
-               ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_mrp_productions"
+                        type="object"
+                        string="Manufacturing Request"
+                        attrs="{'invisible':[('mrp_production_request_id', '=', False)]}"
+                        class="oe_stat_button"
+                        icon="fa-list-alt"
+                />
+            </div>
             <field name="availability" position="after">
                 <field name="mrp_production_request_id"/>
             </field>
